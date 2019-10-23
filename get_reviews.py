@@ -1,3 +1,4 @@
+import re
 import pandas as pd
 
 # read
@@ -6,9 +7,9 @@ print(df.columns.values)
 
 # clean
 df = df[df.Score > 2]
-df_reviews = df['Text'].dropna().drop_duplicates()
+regex = re.compile(r'<.*?>', re.IGNORECASE)
+df_reviews = df['Text'].dropna().drop_duplicates().map(lambda x: re.sub(regex, ' ', x))
 reviews = df_reviews.tolist()
-#print(reviews)
 print(len(reviews))
 
 with open('reviews.txt', 'w') as f:
