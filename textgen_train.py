@@ -47,6 +47,7 @@ def main():
 
     BATCH_SIZE = 64
     BUFFER_SIZE = 10000
+    EPOCHS = 10
 
     dataset = dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE, drop_remainder=True)
 
@@ -90,6 +91,26 @@ def main():
     print("Input: \n", repr("".join(idx2char[input_example_batch[0]])))
     print()
     print("Next Char Predictions: \n", repr("".join(idx2char[sampled_indices])))
+
+    def loss(labels, logits):
+        return tf.keras.losses.sparse_categorical_crossentropy(labels, logits, from_logits=True)
+
+    example_batch_loss = loss(target_example_batch, example_batch_predictions)
+    print("Prediction shape: ", example_batch_predictions.shape, " # (batch_size, sequence_length, vocab_size)")
+    print("scalar_loss:      ", example_batch_loss.numpy().mean())
+
+    model.compile(optimizer='adam', loss=loss)
+
+    # Directory where the checkpoints will be saved
+    checkpoint_dir = './training_checkpoints'
+    # Name of the checkpoint files
+    checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt_{epoch}")
+
+    checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+        filepath=checkpoint_prefix,
+        save_weights_only=True)
+
+    history = model.fit(dataset, epochs=EPOCHS, callbacks=[checkpoint_callback])
 
 if __name__ == '__main__':
     main()
