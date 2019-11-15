@@ -21,7 +21,10 @@ def main():
 
     # The maximum length sentence we want for a single input in characters
     seq_length = 100
-    examples_per_epoch = len(text) // (seq_length + 1)
+
+    tf.debugging.set_log_device_placement(True)
+    print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+    exit()
 
     # Create training examples / targets
     char_dataset = tf.data.Dataset.from_tensor_slices(text_as_int)
