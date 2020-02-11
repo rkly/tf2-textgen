@@ -2,7 +2,7 @@ import re
 import pandas as pd
 
 # read
-df = pd.read_csv('amazon-fine-food-reviews/Reviews.csv')
+df = pd.read_csv('Reviews.csv')
 print(df.columns.values)
 
 # clean
