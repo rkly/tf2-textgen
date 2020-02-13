@@ -112,8 +112,6 @@ def main():
 
     # Save the model
     model.save('textgen.h5')
-    # Export the model to a SavedModel
-    model.save('path_to_saved_model', save_format='tf')
 
 
 if __name__ == '__main__':
