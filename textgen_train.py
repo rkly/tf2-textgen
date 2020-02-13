@@ -115,5 +115,6 @@ def main():
     # Export the model to a SavedModel
     model.save('path_to_saved_model', save_format='tf')
 
+
 if __name__ == '__main__':
     main()
