@@ -73,7 +73,7 @@ def main():
         return model
 
     model = build_model(
-        vocab_size=len(alphabet),
+        vocab_size=vocab_size,
         embedding_dim=embedding_dim,
         rnn_units=rnn_units,
         batch_size=BATCH_SIZE)
