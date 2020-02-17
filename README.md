@@ -2,7 +2,7 @@
 Generate text using a character-based RNN
 based on https://www.tensorflow.org/tutorials/text/text_generation
 
-Used [Amazon Foode Review Dataset](https://www.kaggle.com/snap/amazon-fine-food-reviews)
+Used [Amazon Fine Food Reviews Dataset](https://www.kaggle.com/snap/amazon-fine-food-reviews)
 
 get_reviews.py extracts text from csv
 
